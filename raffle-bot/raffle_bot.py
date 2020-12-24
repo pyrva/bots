@@ -61,4 +61,4 @@ async def on_message(message):
 
 
 if __name__ == '__main__':
-    client.run(os.getenv('TOKEN'))
+    client.run(os.getenv('RAFFLE_BOT_TOKEN'))
