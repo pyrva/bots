@@ -56,6 +56,9 @@ async def on_message(message):
         author=str(message.author).split("#")[0],
         admin=message.author.guild_permissions.administrator,
     )
+    if not msg:
+        return
+
     print(msg)
     await message.channel.send(msg)
 
