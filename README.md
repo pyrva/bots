@@ -22,3 +22,4 @@ flit install -s
 - [discord.py](https://discordpy.readthedocs.io/)
 - [tweepy](https://docs.tweepy.org/)
 - [Meetup API](https://www.meetup.com/meetup_api/)
+- [Discord Developer Portal](https://discord.com/developers/applications/)
