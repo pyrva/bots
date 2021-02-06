@@ -13,6 +13,7 @@ requires=[
     "discord.py>=1.6.0",
     "tweepy>=3.10.0",
     "typer>=0.3.2",
+    "requests>=2.25.1",
 ]
 
 [tool.flit.metadata.requires-extra]
