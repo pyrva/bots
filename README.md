@@ -20,6 +20,7 @@ meetup_bot | Discord | post the up coming meetup meeting to a channel looping on
 	- user would post an announcement and bot would post it in the announcements section
 - [ ] what to learn
 	- it would be fun to have /whattolearn spit out a random python package or concept if people are bored. I'm sure there's a way to query for a random package on PyPI
+- [ ] Assign badge to people attending specific events
 
 ---
 ## RSB Notes

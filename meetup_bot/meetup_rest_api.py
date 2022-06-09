@@ -45,7 +45,8 @@ def _get_upcoming():
         json.dump(new_list, f)
 
     
-    #TODO select the events worth posting to discord and return that only
+    #TODO select the events worth posting to discord and return only them
+    ## Check the channel for Id's / keys of events already posted?
 
     return event_info 
 
