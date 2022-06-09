@@ -1,8 +1,9 @@
 import os
 import random
 
-from dotenv import load_dotenv
 import discord
+from dotenv import load_dotenv
+
 load_dotenv()
 
 
@@ -61,4 +62,4 @@ async def on_message(message):
 
 
 if __name__ == '__main__':
-    client.run(os.getenv('RAFFLE_BOT_TOKEN'))
+    client.run(os.getenv('DISCORD_TOKEN'))
