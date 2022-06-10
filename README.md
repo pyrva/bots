@@ -28,7 +28,7 @@ Deployment:
 
 ```
 docker build -t pyrva/bot:latest .
-docker run pyrva/bot:latest
+docker run -d pyrva/bot:latest
 ```
 
 ---
