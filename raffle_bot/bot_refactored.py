@@ -73,8 +73,7 @@ async def raffle(ctx, command: str):
     print(f'command {command}')
     print(f'author {str(ctx.message.author).split("#")[0]}')
     print(f'admin {_is_admin}')
-    print('------------------')
-
+    
     msg = response(
         msg=command,
         author=str(ctx.message.author).split("#")[0],
@@ -82,6 +81,7 @@ async def raffle(ctx, command: str):
     )
 
     print(f'result {msg}')
+    print('------------------')
     await ctx.send(msg)
 
 if __name__ == "__main__":

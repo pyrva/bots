@@ -1,0 +1,4 @@
+#example of ignoring .git and python cache folder
+.git
+__pycache__
+.vscode

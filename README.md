@@ -22,6 +22,15 @@ meetup_bot | Discord | post the up coming meetup meeting to a channel looping on
 	- it would be fun to have /whattolearn spit out a random python package or concept if people are bored. I'm sure there's a way to query for a random package on PyPI
 - [ ] Assign badge to people attending specific events
 
+
+---
+Deployment:
+
+```
+docker build -t pyrva/bot:latest .
+docker run pyrva/bot:latest
+```
+
 ---
 ## RSB Notes
 
