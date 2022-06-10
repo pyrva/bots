@@ -2,6 +2,7 @@
 import json
 import os
 import random
+
 from discord.ext import commands
 
 if __name__ == "__main__":
@@ -16,7 +17,7 @@ else:
 @bot.command(name='futurama', help='Responds with a random quote from Futurama', pass_context=True)
 async def futurama(ctx):
     curpath = os.path.abspath(os.curdir)
-    filename = "simple_examples/command_example/futurama.json"
+    filename = "simple_commands/futurama.json"
     filepath = os.path.join(curpath, filename)
 
     f = open(filepath)
