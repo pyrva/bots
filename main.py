@@ -13,6 +13,7 @@ builtins.bot = bot
 
 import simple_commands.bot
 import autobadge_bot.bot
+import raffle_bot.bot_refactored
 
 TOKEN = os.getenv('DISCORD_TOKEN')
 bot.run(TOKEN)

@@ -142,3 +142,4 @@ cython_debug/
 
 #rsb
 test.py
+.vscode

@@ -2,6 +2,7 @@
 import json
 import os
 import random
+import discord
 
 from discord.ext import commands
 from dotenv import load_dotenv
@@ -24,6 +25,19 @@ async def nine_nine(ctx):
 
     response = random.choice(brooklyn_99_quotes)
     await ctx.send(response)
+
+@bot.command(name='roles', help='testing return role')
+async def roles(ctx):
+    print(ctx.message.author)
+    print(ctx.message.author.roles)
+    
+    if any( x in os.getenv('ADMIN_ROLES') for x in [role.name for role in ctx.message.author.roles]):
+        response = "Admin True"
+    else:
+        response = "Admin False"
+
+    await ctx.send(response)
+
 
 if __name__ == "__main__":
     bot.run(TOKEN)
