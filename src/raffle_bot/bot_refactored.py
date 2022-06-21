@@ -15,16 +15,6 @@ else:
     from builtins import bot
 
 submissions = set()
-entry_keys = [
-    'pick me',
-    'select me',
-    'enter',
-]
-selection_keys = [
-    'pick winner',
-    'select winner',
-    'end',
-]
 
 def response(msg: str, author: str, admin: bool) -> str:
     """Determine appropriate action to take.
@@ -57,7 +47,7 @@ def response(msg: str, author: str, admin: bool) -> str:
                 submissions.add(author)
                 return f'Good Luck, {author}!'
         else:
-            return "Only admins are able to access these commands"
+            return "trying typing => !raffle enter"
     
     return 'something went wrong... does your command exist?'
 
