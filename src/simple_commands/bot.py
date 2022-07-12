@@ -30,7 +30,7 @@ async def futurama(ctx):
 @bot.command(name='zen', help='Responds with zen of python by Tim Peters', pass_context=True)
 async def zen(ctx):
     curpath = os.path.abspath(os.curdir)
-    filename = "simple_examples/command_example/zen_of_python.md"
+    filename = "simple_commands/zen_of_python.md"
     filepath = os.path.join(curpath, filename)
     f = open(filepath)
     lines = f.read()

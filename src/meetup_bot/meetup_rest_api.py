@@ -16,7 +16,7 @@ def _get_upcoming():
 
     # file storage handling
     curpath = os.path.abspath(os.curdir)
-    filename = "meetup_example/eventList.json"
+    filename = "eventList.json"
     filepath = os.path.join(curpath, filename)
     print(f"Trying to open: {filepath}")
 
@@ -50,6 +50,14 @@ def _get_upcoming():
 
     return event_info 
 
+def _get_next():
+    response = r.get(_url("events"))
+    event_list = response.json()
+    x = event_list[0]
+    return f"Event: {x['name']} @Date: {x['local_date']} @Time: {x['local_time']}\nStatus: {x['status']}\nLink: {x['link']}"
+
 
 if __name__ == "__main__":
-    _get_upcoming()
+    #_get_upcoming()
+
+    print(_get_next())
