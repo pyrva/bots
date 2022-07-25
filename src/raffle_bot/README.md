@@ -5,15 +5,18 @@ This bot monitors all channels and tracks who wants to enter the raffle.
 
 ## Entering a Raffle
 
-To enter the raffle, members have to enter `pick me` or `select me` in any text channel.
-The key text is case-insensitive and may have additional text (eg. `You should PICK ME!!!!`).
+To enter the raffle, members have to enter `enter` in any text channel.
+
 Admins are not eligible to win, so their submissions are ignored.
 Submissions are stored in a set to prevent duplicate entries.
 
-## Selecting a Winner
+## Admin Controls
 
-To select a winner, an admin can type `pick winner` or `select winner`.
-A winner is selected, their submission is removed from the list, and their victory is announced.
+- To select a winner, an admin can type `end`. A winner is selected, their submission is removed from the list, and their victory is announced.
+
+- `list` shows a list of everyone in the set
+
+- `reset` scraps the current set and starts fresh
 
 ## Running the Bot
 

@@ -4,15 +4,11 @@ import os
 import random
 
 from discord.ext import commands
+from dotenv import load_dotenv
 
-if __name__ == "__main__":
-    from dotenv import load_dotenv
-    load_dotenv()
-    TOKEN = os.getenv('DISCORD_TOKEN')
-
-    bot = commands.Bot(command_prefix='!')
-else:
-    from builtins import bot
+load_dotenv()
+TOKEN = os.getenv('DISCORD_TOKEN')
+bot = commands.Bot(command_prefix=os.getenv('invocation'))
 
 submissions = set()
 
@@ -74,5 +70,6 @@ async def raffle(ctx, command: str):
     print('------------------')
     await ctx.send(msg)
 
-if __name__ == "__main__":
-    bot.run(TOKEN)
+
+bot.run(TOKEN)
+

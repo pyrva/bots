@@ -141,5 +141,4 @@ cython_debug/
 .idea/
 
 #rsb
-test.py
 .vscode

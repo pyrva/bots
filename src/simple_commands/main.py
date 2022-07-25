@@ -4,15 +4,13 @@ import os
 import random
 
 from discord.ext import commands
+from dotenv import load_dotenv
 
-if __name__ == "__main__":
-    from dotenv import load_dotenv
-    load_dotenv()
-    TOKEN = os.getenv('DISCORD_TOKEN')
+load_dotenv()
+TOKEN = os.getenv('DISCORD_TOKEN')
 
-    bot = commands.Bot(command_prefix='!')
-else:
-    from builtins import bot
+bot = commands.Bot(command_prefix=os.getenv('invocation'))
+
 
 @bot.command(name='futurama', help='Responds with a random quote from Futurama', pass_context=True)
 async def futurama(ctx):
@@ -47,5 +45,5 @@ async def roll(ctx, number_of_dice: int, number_of_sides: int):
     ]
     await ctx.send(', '.join(dice))
 
-if __name__ == "__main__":
-    bot.run(TOKEN)
+
+bot.run(TOKEN)

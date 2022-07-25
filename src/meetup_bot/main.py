@@ -18,14 +18,14 @@ def _get_next():
                     \nLink: {x['link']}"
     return event_info
 
-if __name__ == "__main__":
-    from dotenv import load_dotenv
-    load_dotenv()
-    TOKEN = os.getenv('DISCORD_TOKEN')
 
-    bot = commands.Bot(command_prefix='!')
-else:
-    from builtins import bot
+from dotenv import load_dotenv
+
+load_dotenv()
+TOKEN = os.getenv('DISCORD_TOKEN')
+
+bot = commands.Bot(command_prefix=os.getenv('invocation'))
+
 
 ################################################################################################
 #   Tasks on a loop is something I am shelving until someone pokes me to deal with it. -RSB    #
@@ -51,7 +51,7 @@ else:
 
 # update_announcements.start()
 
-@bot.command(name='next_meetup', help='whens the next meetup?', pass_context=True)
+@bot.command(name='next', help='whens the next meetup?', pass_context=True)
 async def next_meetup(ctx):
     response = _get_next()
     print(response) #RSB-TODO need to look into setting up proper logging instead of this ad-hoc non-sense
