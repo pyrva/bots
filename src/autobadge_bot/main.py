@@ -7,7 +7,7 @@ if __name__ == "__main__":
     load_dotenv()
     TOKEN = os.getenv('DISCORD_TOKEN')
 
-    bot = commands.Bot(command_prefix='!')
+    bot = commands.Bot(command_prefix=os.getenv('invocation'))
 else:
     from builtins import bot
     
