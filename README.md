@@ -1,5 +1,7 @@
 # PyRVA Bots
 
+>❗This was an experiment gone horribly wrong. Please do not use this branch or build off of it.  
+
 # 
 Bot | Service | Description | Status | Owner
 ---|---|---|---|---
