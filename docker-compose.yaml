@@ -6,27 +6,33 @@ services:
     build: "./src/raffle_bot/"
     image: "pyrva/raffle_bot:v0.1"
     env_file:
-      - ./src/raffle_bot/.env
       - .env
     environment:
-      - invocation=!?
+      - invocation=!
 
   simple_bot:
     container_name: pyrva_simple_commands
     build: "./src/simple_commands/"
     image: "pyrva/simple_commands:v0.1"
     env_file:
-      - ./src/simple_commands/.env
       - .env
     environment:
-      - invocation=!?
+      - invocation=!!
 
   meetup_bot:
     container_name: pyrva_meetup
     build: "./src/meetup_bot/"
     image: "pyrva/meetup_bot:v0.1"
     env_file:
-      - ./src/meetup_bot/.env
       - .env
     environment:
       - invocation=!?
+
+  autobadge_bot:
+    container_name: pyrva_meetup
+    build: "./src/autobadge_bot/"
+    image: "pyrva/meetup_bot:v0.1"
+    env_file:
+      - .env
+    environment:
+      - invocation=!*
