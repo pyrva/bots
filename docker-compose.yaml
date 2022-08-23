@@ -7,6 +7,7 @@ services:
     image: "pyrva/raffle_bot:v0.1"
     env_file:
       - ./src/raffle_bot/.env
+      - .env
     environment:
       - invocation=!?
 
@@ -16,6 +17,7 @@ services:
     image: "pyrva/simple_commands:v0.1"
     env_file:
       - ./src/simple_commands/.env
+      - .env
     environment:
       - invocation=!?
 
@@ -25,5 +27,6 @@ services:
     image: "pyrva/meetup_bot:v0.1"
     env_file:
       - ./src/meetup_bot/.env
+      - .env
     environment:
       - invocation=!?
