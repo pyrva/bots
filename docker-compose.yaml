@@ -29,9 +29,9 @@ services:
       - invocation=!?
 
   autobadge_bot:
-    container_name: pyrva_meetup
+    container_name: pyrva_autobadge_bot
     build: "./src/autobadge_bot/"
-    image: "pyrva/meetup_bot:v0.1"
+    image: "pyrva/autobadge_bot:v0.1"
     env_file:
       - .env
     environment:
