@@ -18,7 +18,7 @@ class utilities(commands.Cog):
             timestamp=ctx.message.created_at,
             color=discord.Color.green()))
     
-    @commands.command(name='ping', help='Responds with list of people here in mainstage', pass_context=True)
+    @commands.command(name='ping', help='measures the latency of the bot', pass_context=True)
     async def ping(self, ctx):
         logger.info(f'function: google / requester: {str(ctx.message.author).split("#")[0]}')
         await ctx.send(embed=self.ping_pong(ctx, self.bot))
