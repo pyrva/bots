@@ -20,7 +20,7 @@ class raffle(commands.Cog):
         else:
             _is_admin = False
 
-        logger_message = f'command: {command} / author: {str(ctx.message.author).split("#")[0]} / admin: {_is_admin}'
+        logger_message = f'Is author admin: {_is_admin}'
         logger.info(logger_message)
         
         msg = self.response(

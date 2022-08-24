@@ -27,6 +27,16 @@ class Bot(commands.Bot):
                                                              type=discord.ActivityType.playing))
         logger.info("On_connect complete.....")
 
+    async def process_commands(self, message):
+        if message.author.bot:
+            return
+
+        ctx = await self.get_context(message)
+        if ctx.command is not None:
+            logger.info(f'requester: {str(ctx.message.author).split("#")[0]} / message: {ctx.message.content}' )
+
+        await self.invoke(ctx)
+
     def get_cog(self, name):
         # this is really hacky and is probably a sin, could break something
         return super().get_cog(name.capitalize())

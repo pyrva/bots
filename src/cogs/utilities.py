@@ -20,18 +20,14 @@ class utilities(commands.Cog):
     
     @commands.command(name='ping', help='measures the latency of the bot', pass_context=True)
     async def ping(self, ctx):
-        logger.info(f'function: google / requester: {str(ctx.message.author).split("#")[0]}')
         await ctx.send(embed=self.ping_pong(ctx, self.bot))
 
     @commands.command(name='google', help='creates a lmgtfy link', pass_context=True)
     async def google(self, ctx, *, args):
-        logger.info(f'function: google / requester: {str(ctx.message.author).split("#")[0]}')
-
         await ctx.send(f"Here, allow me to google that one for you:\nhttps://letmegooglethat.com/?q={args.replace(' ', '+')}") #,reference=ctx.message
     
     @commands.command(aliases=["pip", "pypi"], help='searches for pip package', pass_context=True)
     async def pipsearch(self,ctx):
-        logger.info(f'function: google / requester: {str(ctx.message.author).split("#")[0]}')
         package = ctx.message.content.split(" ")[-1]
         
         if not package:
@@ -52,8 +48,6 @@ class utilities(commands.Cog):
     
     @commands.command(aliases=["git"], help='returns embed of github repo')
     async def github(self, ctx, endpoint):
-        logger.info(f'function: git / requester: {str(ctx.message.author).split("#")[0]}')
-
         try:
             info = requests.get(f"https://api.github.com/repos/{endpoint}").json()
             contrib_info = requests.get(f"https://api.github.com/repos/{endpoint}/contributors").json()
