@@ -5,9 +5,6 @@ error_log_channel_id = 984475649521639434
 bot_developer_ids = (219966967480582144,)  # Developer
 ignored_extensions = ("music",)
 
-# misc
-default_prefix = "!"
-
 # music
 YTDL_OPTIONS = {
     "format": "bestaudio/best",

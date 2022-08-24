@@ -1,6 +1,10 @@
 # PyRVA Bots
 
->❗This was an experiment gone horribly wrong. Please do not use this branch or build off of it.  
+>❗This was an experiment based on some feedback 
+
+Special Thanks go to: 
+- https://github.com/Crambin/Orderbot
+- https://github.com/Xarlos89/ZorakBot
 
 # 
 Bot | Service | Description | Status | Owner
@@ -13,26 +17,39 @@ meetup_bot | Discord | post the up coming meetup meeting to a channel looping on
 ## Proposed Features
 
 - [X] raffle bot
+- [ ] utilities
+	- [X] let me google that for you
+	- [X] pip search
+	- [ ] return random pip package
+	- [X] bot ping latency check
+	- [ ] user inspection?
+	- [ ] run python snippet
+	- [ ] pprint help message
+	- [X] github repo message
 - [ ] Meetup
-    - scrapes the meetup API for relavant info and posts this info to discord
-- [ ] jobs
-	- user would post a job and it would show up in the `#job_board` channel
-	- have a form to fill out
+	- [X] ask when the next meetup is
+    - [ ] scrapes the meetup API for relavant info and posts this info to discord auto magically
 - [ ] announcements
-	- user would post an announcement and bot would post it in the announcements section
-- [ ] what to learn
-	- it would be fun to have /whattolearn spit out a random python package or concept if people are bored. I'm sure there's a way to query for a random package on PyPI
-	- 
+	- [ ] user would post an announcement and bot would post it in the announcements section
 - [ ] Assign badge to people attending specific events
+	- [X] create a list of who is present in meeting
+
 
 
 ---
-Deployment:
+# Deployment:
 
+fire and forget:
+```zsh
+sudo docker-compose up -d
 ```
-docker build -t pyrva/bot:latest .
-docker run -d pyrva/bot:latest
+
+if you want to use the docker-compose in development be sure to destroy/increment the image or the docker-compose will just use the same image over and over. 
 ```
+sudo docker-compose down --rmi all
+```
+> 💡one potential solution to this is the mount the directory but seemed more trouble than its worth atm. 
+
 
 ---
 ## RSB Notes
@@ -41,4 +58,3 @@ docker run -d pyrva/bot:latest
 - [RealPython - How to make discord bot in python](https://realpython.com/how-to-make-a-discord-bot-python/#how-to-make-a-discord-bot-in-python)
 - [Meetup API docs](https://secure.meetup.com/meetup_api/console/)
 - [DiscordPy Read The Docs](https://discordpy.readthedocs.io/en/latest/index.html)
-- []()

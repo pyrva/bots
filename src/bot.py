@@ -14,11 +14,17 @@ logger = logging.getLogger(__name__)
 
 class Bot(commands.Bot):
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, command_prefix=os.getenv('invocation'), **kwargs)
+        super().__init__(*args, command_prefix=os.getenv('INVOCATION'), **kwargs)
         self.start_time = datetime.now()
 
 
     async def on_connect(self):
+        # status automatically set to online if env does not exist
+        status = os.getenv("STATUS") or 'online'
+        stats_message = "!help"
+        await self.change_presence(status=status,
+                                   activity=discord.Activity(name=stats_message,
+                                                             type=discord.ActivityType.playing))
         logger.info("On_connect complete.....")
 
     def get_cog(self, name):
@@ -28,7 +34,7 @@ class Bot(commands.Bot):
     async def on_ready(self):
         logger.info(f"discord.py version: {discord.__version__}")
         logger.info(f"Successfully logged in as {self.user}   ID: {self.user.id}")
-        logger.info(f"Started at: {self.start_time} / invocation set as: {os.getenv('invocation')}")
+        logger.info(f"Started at: {self.start_time} / invocation set as: {self.command_prefix}")
 
     async def on_error(self, event, *args):
         msg = f"{event} event error exception!\n{traceback.format_exc()}"
@@ -45,8 +51,3 @@ class Bot(commands.Bot):
     #     split_messages = (message[i : i + 1980] for i in range(0, len(message), 1980))
     #     for count, message in enumerate(split_messages, 1):
     #         await error_log_channel.send(f"```Num {count}/{num_messages}:\n{message}```")
-
-    async def scheduled_presence_update(self):
-        await self.wait_until_ready()
-        while not self.is_closed():
-            await asyncio.sleep(60 * 60)  # 60 minutes
