@@ -1,38 +1,12 @@
 version: '3.8'
 
 services:
-  raffle_bot:
-    container_name: pyrva_raffle_bot
-    build: "./src/raffle_bot/"
-    image: "pyrva/raffle_bot:v0.1"
+  bot:
+    container_name: pyrva_bot
+    build: "./src/"
+    image: "pyrva/bot:v0.2"
     env_file:
       - .env
     environment:
       - invocation=!
 
-  simple_bot:
-    container_name: pyrva_simple_commands
-    build: "./src/simple_commands/"
-    image: "pyrva/simple_commands:v0.1"
-    env_file:
-      - .env
-    environment:
-      - invocation=!!
-
-  meetup_bot:
-    container_name: pyrva_meetup
-    build: "./src/meetup_bot/"
-    image: "pyrva/meetup_bot:v0.1"
-    env_file:
-      - .env
-    environment:
-      - invocation=!?
-
-  autobadge_bot:
-    container_name: pyrva_autobadge_bot
-    build: "./src/autobadge_bot/"
-    image: "pyrva/autobadge_bot:v0.1"
-    env_file:
-      - .env
-    environment:
-      - invocation=!*
