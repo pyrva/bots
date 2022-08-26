@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 class simple_fun(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.resource_folder = "cogs/simple_fun/"
+        self.resource_folder = "cogs/fun/"
     
     @commands.command(name='futurama', help='Responds with a random quote from Futurama', pass_context=True)
     async def futurama(self, ctx):
