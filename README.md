@@ -4,13 +4,13 @@ This is the PyRVA bot used in the pyrva discord server.
 Join the server here: https://discord.gg/PThzSm3n
 
 ## Cogs
-COG | Description | Status | Owner
----|---|---|---|---
-fun | show some examples and general fun stuff | On-Going | Richard
-utilities | these are some practical utilites that are helpful | On-Going | Richard
-raffle | Monitor text channels to help with raffles | Functional | Cohan
-meetup | post the up coming meetup meeting to a channel looping on a time  interval | In Progress | Richard
-autobadge | automatically manage badges for people attending events | In Progress | TBD
+| COG | Description | Status | Owner | 
+|-----|-------------|--------|-------|
+| fun | show some examples and general fun stuff | On-Going | Richard |
+| utilities | these are some practical utilites that are helpful | On-Going | Richard |
+| raffle | Monitor text channels to help with raffles | Functional | Cohan |
+| meetup | post the up coming meetup meeting to a channel looping on a time  interval | In Progress | Richard |
+| autobadge | automatically manage badges for people attending events | In Progress | TBD |
 
 ## Proposed Features
 
