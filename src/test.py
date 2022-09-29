@@ -12,7 +12,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 logger = logging.getLogger('discord')
-logger.setLevel(logging.DEBUG)
+logger.setLevel(logging.INFO)
 if os.getenv("SAVE_LOG_TO_FILE"):
     handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w')
     handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
@@ -47,21 +47,5 @@ for extension_path in Path("./cogs").glob("*.py"):
     except Exception as e:
         traceback_msg = traceback.format_exception(etype=type(e), value=e, tb=e.__traceback__)
         logger.info(f"Failed to load cog {dotted_path} - traceback:{traceback_msg}")
-
-@bot.event
-async def on_connect():
-    # status automatically set to online if env does not exist
-    status = os.getenv("STATUS") or 'online'
-    status_message = os.getenv('STATUS_MESSAGE')
-    await bot.change_presence(status=status,
-                                activity=discord.Activity(name=status_message,
-                                                            type=discord.ActivityType.playing))
-    logger.info("On_connect complete.....")
-
-@bot.event
-async def on_ready():
-    logger.info(f"discord.py version: {discord.__version__}")
-    logger.info(f"Successfully logged in as {bot.user}   ID: {bot.user.id}")
-    logger.info(f"Started at: {start_time} / invocation set as: {invocation}")
 
 bot.run(os.getenv("DISCORD_TOKEN"))
