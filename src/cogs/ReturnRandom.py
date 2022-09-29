@@ -31,7 +31,7 @@ class ReturnRandom(commands.Cog):
           str(random.choice(range(1, number_of_sides + 1)))
           for _ in range(number_of_dice)
       ]
-      await ctx.send(', '.join(dice))
+      await ctx.respond(', '.join(dice))
 
 def setup(bot):
     bot.add_cog(ReturnRandom(bot))

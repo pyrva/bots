@@ -12,7 +12,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 logger = logging.getLogger('discord')
-logger.setLevel(logging.DEBUG)
+logger.setLevel(logging.INFO)
 if os.getenv("SAVE_LOG_TO_FILE"):
     handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w')
     handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
@@ -32,8 +32,7 @@ invocation = os.getenv("INVOCATION") or "?"
 intents = discord.Intents.default()
 intents.members = True
 intents.message_content = True
-bot = discord.Bot(
-    command_prefix=commands.when_mentioned_or(invocation), 
+bot = commands.Bot(
     description=description, 
     intents=intents)
    
@@ -63,5 +62,13 @@ async def on_ready():
     logger.info(f"discord.py version: {discord.__version__}")
     logger.info(f"Successfully logged in as {bot.user}   ID: {bot.user.id}")
     logger.info(f"Started at: {start_time} / invocation set as: {invocation}")
+
+@bot.listen('on_message')
+async def log_message(message):
+    ctx = await bot.get_context(message)
+    if message.interaction is not None:
+        logger.info(f'requester: {str(message.interaction.user)}')
+        logger.info(f'Command: {str(message.interaction.name)}' )
+        logger.info(f'message: {ctx.message.content}' )
 
 bot.run(os.getenv("DISCORD_TOKEN"))
