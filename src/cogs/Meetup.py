@@ -9,6 +9,8 @@ from discord.ext import commands
 logger = logging.getLogger(__name__)
 
 class meetup(commands.Cog):
+    meetup = SlashCommandGroup("meetup", "Interacting with the meetup api")
+    
     def _url(self, path):
         return "https://api.meetup.com/PyRVAUserGroup/" + path
 
@@ -21,9 +23,7 @@ class meetup(commands.Cog):
                         \nLink: {x['link']}"
         return event_info
 
-    meetup = SlashCommandGroup("meetup", "Interacting with the meetup api")
-
-    @meetup.slash_command(name='next', help='whens the next meetup?', pass_context=True)
+    @meetup.command(name='next', help='whens the next meetup?', pass_context=True)
     async def next_meetup(self, ctx):
         response = self._get_next()
         logger.info(f'output\n{response}')
