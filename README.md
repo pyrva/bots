@@ -60,6 +60,9 @@ sudo docker-compose down --rmi all
 - https://github.com/Crambin/Orderbot
 - https://github.com/Xarlos89/ZorakBot
 ## Helpful Docs:
+- py-cord
+	- [repo](https://github.com/Pycord-Development/pycord)
+	- [documentation](https://docs.pycord.dev/en/stable/)
 - [RealPython - How to make discord bot in python](https://realpython.com/how-to-make-a-discord-bot-python/#how-to-make-a-discord-bot-in-python)
 - [Meetup API docs](https://secure.meetup.com/meetup_api/console/)
 - [DiscordPy Read The Docs](https://discordpy.readthedocs.io/en/latest/index.html)
