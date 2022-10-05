@@ -11,8 +11,11 @@ from dotenv import load_dotenv
 load_dotenv()
 
 logger = logging.getLogger('discord')
-logger.setLevel(logging.INFO)
-if os.getenv("SAVE_LOG_TO_FILE"):
+if os.getenv("DEBUG") == 'True':
+    logger.setLevel(logging.DEBUG)
+else:
+    logger.setLevel(logging.INFO)
+if os.getenv("SAVE_LOG_TO_FILE") == 'True':
     handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w')
     handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
     logger.addHandler(handler)
@@ -68,17 +71,17 @@ async def on_ready():
     logger.info(f"Successfully logged in as {bot.user}/ ID: {bot.user.id}")
     logger.info(f"Started at: {start_time}")
 
-# @bot.listen('on_interaction')
-# async def log_interaction(interaction):
-#     if interaction is not None:
-#         logger.info(f'requester: {str(interaction.user)}')
-#         logger.info(f'Command: {str(interaction.data)}')
+@bot.listen('on_interaction')
+async def log_interaction(interaction):
+    if interaction is not None:
+        logger.info(f'requester: {str(interaction.user)}')
+        logger.info(f'Command: {str(interaction.data)}')
 
-# @bot.listen('on_message')
-# async def log_message(message):
-#     if message.interaction is not None:
-#         logger.info(f'response: {str(message.content)}')
-#         logger.info(f'url: {str(message.jump_url)}')
+@bot.listen('on_message')
+async def log_message(message):
+    if message.interaction is not None:
+        logger.info(f'response: {str(message.content)}')
+        logger.info(f'url: {str(message.jump_url)}')
 
 
 bot.run(os.getenv("DISCORD_TOKEN"))
