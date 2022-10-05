@@ -3,6 +3,7 @@ import logging
 import os
 import random
 
+import discord
 from discord.commands import SlashCommandGroup
 from discord.ext import commands
 from dotenv import load_dotenv
@@ -15,41 +16,55 @@ class raffle(commands.Cog):
     def __init__(self, bot):
         self.submissions = set()
 
-    @raffle.command(name="enter")
+    @raffle.command(name="enter", help="enter the raffle")
     async def raffle_enter(self, ctx):
-        await ctx.respond('pong!')
+        if any( x in os.getenv('ADMIN_ROLES') for x in [role.name for role in ctx.author.roles]):
+            _is_admin = True
+        else:
+            _is_admin = False
 
-    @raffle.command(name="end")
-    async def raffle_end(self, ctx):
-        await ctx.respond('pong!')
+        msg = self.response(
+            msg='enter',
+            author=str(ctx.author).split("#")[0],
+            admin=_is_admin,
+        )
+        await ctx.respond(msg)
 
-    @raffle.command(name="list")
+    @raffle.command(name="select", help="ADMIN ONLY ~ selects a winner from the list")
+    @discord.default_permissions(
+        administrator=True,
+    )  # Only members with this permission can use this command.
+    async def raffle_select_winner(self, ctx):
+        msg = self.response(
+            msg='select',
+            author=str(ctx.author).split("#")[0],
+            admin=True,
+        )
+        await ctx.respond(msg)
+
+    @raffle.command(name="list", help="ADMIN ONLY ~ lists the participants in the raffle")
+    @discord.default_permissions(
+        administrator=True,
+    )  # Only members with this permission can use this command.
     async def raffle_list(self, ctx):
-        await ctx.respond('pong!')
+        msg = self.response(
+            msg='list',
+            author=str(ctx.author).split("#")[0],
+            admin=True,
+        )
+        await ctx.respond(msg)
     
-    @raffle.command(name="reset")
+    @raffle.command(name="reset", help="ADMIN ONLY ~ resets the list of participants")
+    @discord.default_permissions(
+        administrator=True,
+    )  # Only members with this permission can use this command.
     async def raffle_reset(self, ctx):
-        await ctx.respond('pong!')
-
-    # @commands.command(name='raffle', help='Raffle bot for pyrva raffle. Commands: enter, end, list, reset.', pass_context=True)
-    # async def raffle(self, ctx, command: str):
-
-    #     if any( x in os.getenv('ADMIN_ROLES') for x in [role.name for role in ctx.message.author.roles]):
-    #         _is_admin = True
-    #     else:
-    #         _is_admin = False
-
-    #     logger_message = f'Is author admin: {_is_admin}'
-    #     logger.info(logger_message)
-        
-    #     msg = self.response(
-    #         msg=command,
-    #         author=str(ctx.message.author).split("#")[0],
-    #         admin=_is_admin,
-    #     )
-    #     logger.info(f'result {msg}')
-    #     await ctx.respond(msg)
-
+        msg = self.response(
+            msg='reset',
+            author=str(ctx.author).split("#")[0],
+            admin=True,
+        )
+        await ctx.respond(msg)
 
     def response(self, msg: str, author: str, admin: bool) -> str:
         """Determine appropriate action to take.
@@ -60,7 +75,7 @@ class raffle(commands.Cog):
         """
 
         if admin:
-            if msg.lower() == 'end':
+            if msg.lower() == 'select':
                 if self.submissions:
                     winner = random.choice(list(self.submissions))
                     self.submissions.remove(winner)
@@ -70,7 +85,7 @@ class raffle(commands.Cog):
             elif msg.lower() == 'enter':
                 return "Admins can't enter the raffle. Thems the rules."
             elif msg.lower() == 'list':
-                return self.submissions
+                return str(self.submissions)
             elif msg.lower() == 'reset':
                 self.submissions.clear()
                 return "raffle reset"
