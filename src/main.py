@@ -38,11 +38,6 @@ bot = discord.Bot(
     description=description, 
     intents=intents)
 
-# bot.load_extension('cogs.Fun')
-# bot.load_extension('cogs.Utilities')
-# bot.load_extension('cogs.Raffle')
-# bot.load_extension('cogs.Meetup')
-
 for extension_path in Path("./cogs").glob("*.py"):
     extension_name = extension_path.stem
     dotted_path = f"cogs.{extension_name}"
