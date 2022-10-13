@@ -68,6 +68,6 @@ class raffle(commands.Cog):
         return 'something went wrong... does your command exist?'
 
 
-def setup(bot):
-    bot.add_cog(raffle(bot))
+async def setup(bot):
+    await bot.add_cog(raffle(bot))
 

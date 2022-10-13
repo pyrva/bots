@@ -52,7 +52,7 @@ class meetup(commands.Cog):
     # update_announcements.start()
 
 
-def setup(bot):
-    bot.add_cog(meetup(bot))
+async def setup(bot):
+    await bot.add_cog(meetup(bot))
 
 

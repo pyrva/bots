@@ -1,5 +1,4 @@
 import os
-from time import sleep
 import logging
 import traceback
 from pathlib import Path
@@ -25,7 +24,7 @@ root_logger.info("Running as main bot.")
 async def load_cogs(bot: Bot, *cogs: str | Cog):
     for cog_module in cogs:
         try:
-            await bot.add_cog(cog_module)
+            await bot.load_extension(cog_module)
             root_logger.info(f'loaded {cog_module}')
         except Exception as e:
             traceback_msg = traceback.format_exception(
@@ -34,6 +33,7 @@ async def load_cogs(bot: Bot, *cogs: str | Cog):
             root_logger.info(
                 f'Failed to load cog {cog_module} - traceback:{traceback_msg}'
             )
+            raise e
 
 
 if __name__ == '__main__':

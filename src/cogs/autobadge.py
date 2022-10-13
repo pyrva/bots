@@ -21,5 +21,5 @@ class autobadge(commands.Cog):
         await ctx.send(mem)
 
 
-def setup(bot):
-    bot.add_cog(autobadge(bot))
+async def setup(bot):
+    await bot.add_cog(autobadge(bot))
