@@ -16,4 +16,4 @@ async def test_bot_can_load_our_cogs():
     assert 'cogs.raffle' in cogs, 'Raffle cog not found. Please update test.'
     bot = Bot(case_insensitive=True, intents=Intents.all())
     await load_cogs(bot, *cogs)
-    assert 'raffle' in bot.cogs
+    assert 'Raffle' in bot.cogs
