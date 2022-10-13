@@ -25,8 +25,7 @@ console.setFormatter(formatter)
 logger.addHandler(console)
 
 description = """
-An example bot to showcase the discord.ext.commands extension module.
-There are a number of utility commands being showcased here.
+PyRVA bot
 """
 start_time = datetime.now()
 

@@ -4,9 +4,9 @@ services:
   bot:
     container_name: pyrva_bot
     build: "./src/"
-    image: "pyrva/bot:v0.2"
+    image: "pyrva/bot:v0.3"
     env_file:
       - .env
     environment:
-      - invocation=!
+      - OverRide_ENV_Var=!
 
