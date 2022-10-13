@@ -1,13 +1,10 @@
-import asyncio
+from datetime import datetime
 import logging
 import os
 import traceback
-from datetime import datetime
 
 import discord
 from discord.ext import commands
-
-import constants
 
 logger = logging.getLogger(__name__)
 
@@ -17,14 +14,17 @@ class Bot(commands.Bot):
         super().__init__(*args, command_prefix=os.getenv('INVOCATION'), **kwargs)
         self.start_time = datetime.now()
 
-
     async def on_connect(self):
         # status automatically set to online if env does not exist
         status = os.getenv("STATUS") or 'online'
         stats_message = "!help"
-        await self.change_presence(status=status,
-                                   activity=discord.Activity(name=stats_message,
-                                                             type=discord.ActivityType.playing))
+        await self.change_presence(
+            status=status,
+            activity=discord.Activity(
+                name=stats_message,
+                type=discord.ActivityType.playing
+            )
+        )
         logger.info("On_connect complete.....")
 
     async def process_commands(self, message):
@@ -33,7 +33,9 @@ class Bot(commands.Bot):
 
         ctx = await self.get_context(message)
         if ctx.command is not None:
-            logger.info(f'requester: {str(ctx.message.author).split("#")[0]} / message: {ctx.message.content}' )
+            logger.info(
+                f'requester: {str(ctx.message.author).split("#")[0]} / message: {ctx.message.content}'
+            )
 
         await self.invoke(ctx)
 
@@ -44,7 +46,9 @@ class Bot(commands.Bot):
     async def on_ready(self):
         logger.info(f"discord.py version: {discord.__version__}")
         logger.info(f"Successfully logged in as {self.user}   ID: {self.user.id}")
-        logger.info(f"Started at: {self.start_time} / invocation set as: {self.command_prefix}")
+        logger.info(
+            f"Started at: {self.start_time} / invocation set as: {self.command_prefix}"
+        )
 
     async def on_error(self, event, *args):
         msg = f"{event} event error exception!\n{traceback.format_exc()}"

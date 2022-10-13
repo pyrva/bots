@@ -1,10 +1,12 @@
-import logging
 import os
+from time import sleep
+import logging
 import traceback
 from pathlib import Path
 from sys import stdout
 
 from discord import Intents
+from discord.ext.commands import Cog
 from dotenv import load_dotenv
 
 import constants
@@ -17,23 +19,33 @@ console = logging.StreamHandler(stdout)
 console.setFormatter(formatter)
 root_logger.addHandler(console)
 
-root_logger.info(f"Running as main bot.")
+root_logger.info("Running as main bot.")
 
 
-if __name__ == "__main__":
+async def load_cogs(bot: Bot, *cogs: str | Cog):
+    for cog_module in cogs:
+        try:
+            await bot.add_cog(cog_module)
+            root_logger.info(f'loaded {cog_module}')
+        except Exception as e:
+            traceback_msg = traceback.format_exception(
+                type(e), value=e, tb=e.__traceback__
+            )
+            root_logger.info(
+                f'Failed to load cog {cog_module} - traceback:{traceback_msg}'
+            )
+
+
+if __name__ == '__main__':
     load_dotenv()
     bot = Bot(case_insensitive=True, intents=Intents.all())
-    for extension_path in Path("./cogs").glob("*.py"):
-        extension_name = extension_path.stem
-        if extension_name in constants.ignored_extensions:
-            continue
+    cogs = [
+        f'cogs.{x.stem}'
+        for x in Path(__file__, 'cogs').glob('*.py')
+        if x.stem not in constants.ignored_extensions
+    ]
+    load_cogs(bot, *cogs)
 
-        dotted_path = f"cogs.{extension_name}"
-        try:
-            bot.load_extension(dotted_path)
-            root_logger.info(f"loaded {dotted_path}")
-        except Exception as e:
-            traceback_msg = traceback.format_exception(etype=type(e), value=e, tb=e.__traceback__)
-            root_logger.info(f"Failed to load cog {dotted_path} - traceback:{traceback_msg}")
+    bot.run(os.getenv('DISCORD_TOKEN'))
 
-    bot.run(os.getenv("DISCORD_TOKEN"))
+
