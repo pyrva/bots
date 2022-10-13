@@ -1,25 +1,23 @@
-import json
 import logging
-import os
 
+from discord.ext import commands
 import requests as r
-from discord.ext import commands, tasks
 
 logger = logging.getLogger(__name__)
 
 
-class meetup(commands.Cog):
-    def _url(self, path):
-        return "https://api.meetup.com/PyRVAUserGroup/" + path
+class Meetup(commands.Cog):
+    @staticmethod
+    def _url(path):
+        return f"https://api.meetup.com/PyRVAUserGroup/{path}"
 
     def _get_next(self):
         response = r.get(self._url("events"))
         event_list = response.json()
         x = event_list[0]
-        event_info = f"Event: {x['name']} \
+        return f"Event: {x['name']} \
                         \nDate: {x['local_date']} Time: {x['local_time']} EST \
                         \nLink: {x['link']}"
-        return event_info
 
     @commands.command(name='next', help='whens the next meetup?', pass_context=True)
     async def next_meetup(self, ctx):
@@ -53,6 +51,4 @@ class meetup(commands.Cog):
 
 
 async def setup(bot):
-    await bot.add_cog(meetup(bot))
-
-
+    await bot.add_cog(Meetup(bot))
