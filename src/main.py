@@ -42,7 +42,7 @@ if __name__ == '__main__':
     cogs = [
         f'cogs.{x.stem}'
         for x in Path(__file__, 'cogs').glob('*.py')
-        if x.stem not in constants.ignored_extensions
+        if x.stem not in constants.IGNORED_EXTENSIONS
     ]
     load_cogs(bot, *cogs)
 

@@ -1,9 +1,9 @@
 # logging
-error_log_channel_id = 984475649521639434
+ERROR_LOG_CHANNEL_ID = 984475649521639434
 
 # development
-bot_developer_ids = (219966967480582144,)  # Developer
-ignored_extensions = ("music",)
+BOT_DEVELOPER_IDS = (219966967480582144,)  # Developer
+IGNORED_EXTENSIONS = ("music",)
 
 # music
 YTDL_OPTIONS = {
@@ -26,8 +26,8 @@ FFMPEG_OPTIONS = {
 }
 
 # language settings and codes
-lang_settings = {"-s": "auto", "-d": "en"}
-lang_codes = {
+LANG_SETTINGS = {"-s": "auto", "-d": "en"}
+LANG_CODES = {
     "af": "Afrikaans",
     "sq": "Albanian",
     "am": "Amharic",
