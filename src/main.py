@@ -4,6 +4,7 @@ import logging
 import traceback
 from pathlib import Path
 from sys import stdout
+from typing import Union
 
 from discord import Intents
 from discord.ext.commands import Cog
@@ -22,7 +23,7 @@ root_logger.addHandler(console)
 root_logger.info("Running as main bot.")
 
 
-async def load_cogs(bot: Bot, *cogs: str | Cog):
+async def load_cogs(bot: Bot, *cogs: Union[str, Cog]):
     for cog_module in cogs:
         try:
             await bot.load_extension(cog_module)
