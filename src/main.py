@@ -1,3 +1,4 @@
+import asyncio
 import os
 import logging
 import traceback
@@ -44,7 +45,7 @@ if __name__ == '__main__':
         for x in Path(__file__, 'cogs').glob('*.py')
         if x.stem not in constants.IGNORED_EXTENSIONS
     ]
-    load_cogs(bot, *cogs)
+    asyncio.run(load_cogs(bot, *cogs))
 
     bot.run(os.getenv('DISCORD_TOKEN'))
 
