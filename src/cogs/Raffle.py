@@ -6,9 +6,9 @@ import random
 import discord
 from discord.commands import SlashCommandGroup
 from discord.ext import commands
-from dotenv import load_dotenv
 
 logger = logging.getLogger(__name__)
+
 
 class raffle(commands.Cog):
     raffle = SlashCommandGroup("raffle", "Manages the raffle")
@@ -18,13 +18,16 @@ class raffle(commands.Cog):
 
     @raffle.command(name="enter", help="enter the raffle")
     async def raffle_enter(self, ctx):
-        if any( x in os.getenv('ADMIN_ROLES') for x in [role.name for role in ctx.author.roles]):
+        if any(
+            x in os.getenv("ADMIN_ROLES")
+            for x in [role.name for role in ctx.author.roles]
+        ):
             _is_admin = True
         else:
             _is_admin = False
 
         msg = self.response(
-            msg='enter',
+            msg="enter",
             author=str(ctx.author).split("#")[0],
             admin=_is_admin,
         )
@@ -36,31 +39,33 @@ class raffle(commands.Cog):
     )  # Only members with this permission can use this command.
     async def raffle_select_winner(self, ctx):
         msg = self.response(
-            msg='select',
+            msg="select",
             author=str(ctx.author).split("#")[0],
             admin=True,
         )
         await ctx.respond(msg)
 
-    @raffle.command(name="list", help="ADMIN ONLY ~ lists the participants in the raffle")
+    @raffle.command(
+        name="list", help="ADMIN ONLY ~ lists the participants in the raffle"
+    )
     @discord.default_permissions(
         administrator=True,
     )  # Only members with this permission can use this command.
     async def raffle_list(self, ctx):
         msg = self.response(
-            msg='list',
+            msg="list",
             author=str(ctx.author).split("#")[0],
             admin=True,
         )
         await ctx.respond(msg)
-    
+
     @raffle.command(name="reset", help="ADMIN ONLY ~ resets the list of participants")
     @discord.default_permissions(
         administrator=True,
     )  # Only members with this permission can use this command.
     async def raffle_reset(self, ctx):
         msg = self.response(
-            msg='reset',
+            msg="reset",
             author=str(ctx.author).split("#")[0],
             admin=True,
         )
@@ -75,33 +80,32 @@ class raffle(commands.Cog):
         """
 
         if admin:
-            if msg.lower() == 'select':
+            if msg.lower() == "select":
                 if self.submissions:
                     winner = random.choice(list(self.submissions))
                     self.submissions.remove(winner)
-                    return f'Congratulations {winner}! 🎉'
+                    return f"Congratulations {winner}! 🎉"
                 else:
-                    return 'Looks like there is nobody to win'
-            elif msg.lower() == 'enter':
+                    return "Looks like there is nobody to win"
+            elif msg.lower() == "enter":
                 return "Admins can't enter the raffle. Thems the rules."
-            elif msg.lower() == 'list':
+            elif msg.lower() == "list":
                 return str(self.submissions)
-            elif msg.lower() == 'reset':
+            elif msg.lower() == "reset":
                 self.submissions.clear()
                 return "raffle reset"
         else:
-            if msg.lower() == 'enter':
+            if msg.lower() == "enter":
                 if author in self.submissions:
-                    return f'No worries, {author}, we already got you 😉'
+                    return f"No worries, {author}, we already got you 😉"
                 else:
                     self.submissions.add(author)
-                    return f'Good Luck, {author}!'
+                    return f"Good Luck, {author}!"
             else:
                 return "trying typing => !raffle enter"
-        
-        return 'something went wrong... does your command exist?'
+
+        return "something went wrong... does your command exist?"
 
 
 def setup(bot):
     bot.add_cog(raffle(bot))
-

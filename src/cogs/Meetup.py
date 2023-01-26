@@ -1,6 +1,4 @@
-import json
 import logging
-import os
 
 import requests as r
 from discord.commands import SlashCommandGroup
@@ -8,9 +6,10 @@ from discord.ext import commands
 
 logger = logging.getLogger(__name__)
 
+
 class meetup(commands.Cog):
     meetup = SlashCommandGroup("meetup", "Interacting with the meetup api")
-    
+
     def _url(self, path):
         return "https://api.meetup.com/PyRVAUserGroup/" + path
 
@@ -23,10 +22,10 @@ class meetup(commands.Cog):
                         \nLink: {x['link']}"
         return event_info
 
-    @meetup.command(name='next', help='whens the next meetup?', pass_context=True)
+    @meetup.command(name="next", help="whens the next meetup?", pass_context=True)
     async def next_meetup(self, ctx):
         response = self._get_next()
-        logger.info(f'output\n{response}')
+        logger.info(f"output\n{response}")
         await ctx.respond(response)
 
     ################################################################################################
@@ -56,5 +55,3 @@ class meetup(commands.Cog):
 
 def setup(bot):
     bot.add_cog(meetup(bot))
-
-
