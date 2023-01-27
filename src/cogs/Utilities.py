@@ -165,6 +165,5 @@ class utilities(commands.Cog):
         await msg.add_reaction("👍")
         await msg.add_reaction("👎")
 
-
 def setup(bot):
     bot.add_cog(utilities(bot))
