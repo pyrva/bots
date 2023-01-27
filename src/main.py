@@ -1,6 +1,6 @@
 import logging
 import os
-import traceback
+
 from datetime import datetime
 from pathlib import Path
 from sys import stdout
@@ -40,15 +40,13 @@ bot = discord.Bot(description=description, intents=intents)
 for extension_path in Path("./cogs").glob("*.py"):
     extension_name = extension_path.stem
     dotted_path = f"cogs.{extension_name}"
-    logger.info(f"loading... {dotted_path}")
-    try:
-        bot.load_extension(str(dotted_path))
-    except Exception as e:
-        traceback_msg = traceback.format_exception(
-            etype=type(e), value=e, tb=e.__traceback__
-        )
-        logger.info(f"Failed to load cog {dotted_path} - traceback:{traceback_msg}")
-    logger.info(f"loaded {dotted_path}")
+    if "__init__" not in str(dotted_path):
+        logger.info(f"loading... {dotted_path}")
+        try:
+            bot.load_extension(str(dotted_path))
+        except Exception as e:
+            logger.info(f"Failed to load cog {dotted_path} - exception:{e}")
+        logger.info(f"loaded {dotted_path}")
 
 
 @bot.slash_command()

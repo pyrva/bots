@@ -13,15 +13,14 @@ class autobadge(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @autobadge.command()
-    @discord.default_permissions(
-        administrator=True,
-    )  # Only members with this permission can use this command.
-    @commands.command(
+    @autobadge.command(
         name="whos_here",
         help="Responds with list of people here in mainstage",
         pass_context=True,
     )
+    @discord.default_permissions(
+        administrator=True,
+    )  # Only members with this permission can use this command.
     async def whos_here(self, ctx):
         channel = self.bot.get_channel(os.getenv("event_channel"))
 
@@ -33,6 +32,10 @@ class autobadge(commands.Cog):
 
         print(mem)  # print info
         await ctx.send(mem)
+
+    # TODO: Setup a trigger to start monitoring a VC. Cache the users that enter the VC.
+    # When admin closes the meeting they trigger the automation of badging everyone in the cache
+    #
 
 
 def setup(bot):

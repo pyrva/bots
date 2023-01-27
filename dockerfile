@@ -5,7 +5,7 @@ FROM python:3.11-slim AS builder-image
 ARG DEBIAN_FRONTEND=noninteractive
 
 # install requirements
-COPY requirements.txt .
+COPY requirements-prod.txt .
 RUN pip install --no-cache-dir -r requirements-prod.txt
 
 RUN useradd --create-home myuser

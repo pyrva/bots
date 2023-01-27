@@ -15,6 +15,21 @@ class utilities(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
+    @util.command(name="suggestion", description="facilitates making a suggestion")
+    @option(
+        name="suggestion",
+        description="This is the suggestion you are asking feedback for",
+        required=True,
+    )
+    async def suggest(self, ctx: discord.ApplicationContext, suggestion: str):
+        logger.info(f"function: suggest / requester: {str(ctx.author)}")
+        print(suggestion)
+        embed = discord.Embed(description=suggestion)
+        embed.set_author(name=f"Suggestion by {ctx.author.name}")
+        msg = await ctx.send(embed=embed)
+        await msg.add_reaction("👍")
+        await msg.add_reaction("👎")
+
     @util.command()
     @discord.default_permissions(
         administrator=True,
@@ -149,21 +164,6 @@ class utilities(commands.Cog):
             )  # When the user joined the server
 
         await ctx.respond(embeds=[embed])  # Sends the embed
-
-    @util.command(name="suggestion", description="facilitates making a suggestion")
-    @option(
-        name="suggestion",
-        description="This is the suggestion you are asking feedback for",
-        required=True,
-    )
-    async def suggest(self, ctx: discord.ApplicationContext, suggestion: str):
-        logger.info(f"function: suggest / requester: {str(ctx.author)}")
-        print(suggestion)
-        embed = discord.Embed(description=suggestion)
-        embed.set_author(name=f"Suggestion by {ctx.author.name}")
-        msg = await ctx.send(embed=embed)
-        await msg.add_reaction("👍")
-        await msg.add_reaction("👎")
 
 
 def setup(bot):
