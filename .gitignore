@@ -142,3 +142,5 @@ cython_debug/
 
 #rsb
 .vscode
+.env_*
+.python-version

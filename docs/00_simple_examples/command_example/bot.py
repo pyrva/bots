@@ -1,37 +1,40 @@
 # bot.py
-import json
 import os
 import random
-import discord
 
 from discord.ext import commands
 from dotenv import load_dotenv
 
 load_dotenv()
-TOKEN = os.getenv('DISCORD_TOKEN')
+TOKEN = os.getenv("DISCORD_TOKEN")
 
-bot = commands.Bot(command_prefix='!')
+bot = commands.Bot(command_prefix="!")
 
-@bot.command(name='99', help='Responds with a random quote from Brooklyn 99')
+
+@bot.command(name="99", help="Responds with a random quote from Brooklyn 99")
 async def nine_nine(ctx):
     brooklyn_99_quotes = [
-        'I\'m the human form of the 💯 emoji.',
-        'Bingpot!',
+        "I'm the human form of the 💯 emoji.",
+        "Bingpot!",
         (
-            'Cool. Cool cool cool cool cool cool cool, '
-            'no doubt no doubt no doubt no doubt.'
+            "Cool. Cool cool cool cool cool cool cool, "
+            "no doubt no doubt no doubt no doubt."
         ),
     ]
 
     response = random.choice(brooklyn_99_quotes)
     await ctx.send(response)
 
-@bot.command(name='roles', help='testing return role')
+
+@bot.command(name="roles", help="testing return role")
 async def roles(ctx):
     print(ctx.message.author)
     print(ctx.message.author.roles)
-    
-    if any( x in os.getenv('ADMIN_ROLES') for x in [role.name for role in ctx.message.author.roles]):
+
+    if any(
+        x in os.getenv("ADMIN_ROLES")
+        for x in [role.name for role in ctx.message.author.roles]
+    ):
         response = "Admin True"
     else:
         response = "Admin False"
