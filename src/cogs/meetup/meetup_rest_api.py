@@ -28,7 +28,10 @@ def _get_upcoming():
         print("well where'd you leave it ya dingus?")
         old_list = open(f"{filepath}", "w+")
 
-    ignore_list = ["Monthly online lecture night", "Monthly Coding Night (ONLINE!!!)"] #TODO: might want to parameterize this
+    ignore_list = [
+        "Monthly online lecture night",
+        "Monthly Coding Night (ONLINE!!!)",
+    ]  # TODO: might want to parameterize this
 
     # compare old and new list
     if new_list != old_list:
@@ -44,11 +47,11 @@ def _get_upcoming():
     with open(f"{filename}", "w") as f:
         json.dump(new_list, f)
 
-    
-    #TODO select the events worth posting to discord and return only them
+    # TODO select the events worth posting to discord and return only them
     ## Check the channel for Id's / keys of events already posted?
 
-    return event_info 
+    return event_info
+
 
 def _get_next():
     response = r.get(_url("events"))
@@ -58,6 +61,6 @@ def _get_next():
 
 
 if __name__ == "__main__":
-    #_get_upcoming()
+    # _get_upcoming()
 
     print(_get_next())

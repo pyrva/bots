@@ -11,7 +11,7 @@ class Simple(commands.Cog):
     @commands.slash_command(description="ping -> pong")
     async def ping(self, ctx: discord.ApplicationContext):
         await ctx.respond("pong!")
-    
+
     @commands.slash_command(description="Say something and the bot will respond!")
     @option(
         name="text",
@@ -20,6 +20,7 @@ class Simple(commands.Cog):
     )
     async def say_something(self, ctx: discord.ApplicationContext, text: str):
         await ctx.respond(f"You said '{text}'!")
+
 
 def setup(bot):
     bot.add_cog(Simple(bot))

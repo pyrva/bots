@@ -1,10 +1,10 @@
 # PyRVA Bots
-This is the PyRVA bot used in the pyrva discord server. 
+This is the PyRVA bot used in the pyrva discord server.
 
 Join the server here: https://discord.gg/PThzSm3n
 
 ## Cogs
-| COG | Description | Status | Owner | 
+| COG | Description | Status | Owner |
 |-----|-------------|--------|-------|
 | fun | show some examples and general fun stuff | On-Going | Richard |
 | utilities | these are some practical utilites that are helpful | On-Going | Richard |
@@ -37,7 +37,7 @@ Join the server here: https://discord.gg/PThzSm3n
 	- [X] create a list of who is present in meeting
 	- [ ] create tool that automatically assigns a given badge based on presence
 
-> 💡If someone can think of a way to write unit tests / pytests to test things like the raffle cog in particular I am all ears. My best case solution is to setup a Dev/Prod dynamic for testing but that feels like more work than its worth. 
+> 💡If someone can think of a way to write unit tests / pytests to test things like the raffle cog in particular I am all ears. My best case solution is to setup a Dev/Prod dynamic for testing but that feels like more work than its worth.
 
 ## Deployment:
 
@@ -46,7 +46,7 @@ fire and forget:
 sudo docker-compose up -d
 ```
 
-if you want to use the docker-compose during development be sure to destroy/increment the image or the docker-compose will just use the same image over and over. 
+if you want to use the docker-compose during development be sure to destroy/increment the image or the docker-compose will just use the same image over and over.
 ```
 sudo docker-compose down --rmi all
 ```
@@ -56,7 +56,7 @@ sudo docker-compose down --rmi all
 ---
 # RSB Notes
 
-## Special Thanks go to: 
+## Special Thanks go to:
 - https://github.com/Crambin/Orderbot
 - https://github.com/Xarlos89/ZorakBot
 ## Helpful Docs:
