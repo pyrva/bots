@@ -9,11 +9,11 @@ dependencies = []
 
 [tool.ruff]
 # Enable Pyflakes `E` and `F` codes by default.
-select = ["E", "F", "N"]
-ignore = ["E501"]
+select = ["ALL"]
+ignore = ['ANN', 'D103', 'PTH', 'T20', 'D']
 
 # Allow autofix for all enabled rules (when `--fix`) is provided.
-fixable = ["B", "C", "D", "E", "F", "W", "COM"]
+fixable = ["ALL"]
 unfixable = []
 
 # Exclude a variety of commonly ignored directories.
@@ -46,7 +46,6 @@ line-length = 88
 # Allow unused variables when underscore-prefixed.
 dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 
-# Assume Python 3.10.
 target-version = "py311"
 
 [tool.ruff.mccabe]
