@@ -9,7 +9,7 @@ dependencies = []
 
 [tool.ruff]
 # Enable Pyflakes `E` and `F` codes by default.
-select = ["E", "F"]
+select = ["E", "F", "N"]
 ignore = ["E501"]
 
 # Allow autofix for all enabled rules (when `--fix`) is provided.
