@@ -6,3 +6,4 @@ services:
     image: "pyrva/bot:pycord_311"
     env_file:
       - .env
+    restart: always
