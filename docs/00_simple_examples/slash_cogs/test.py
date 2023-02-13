@@ -4,6 +4,7 @@ import os
 import discord
 from dotenv import load_dotenv
 from discord.commands import SlashCommandGroup
+
 load_dotenv()
 
 
@@ -21,6 +22,7 @@ bot = discord.Bot(intents=intents)
 # With discord.Bot you can use @bot.command as an alias
 # of @bot.slash_command but this is overridden by commands.Bot.
 
+
 @bot.slash_command()  # Create a slash command
 async def hello(ctx: discord.ApplicationContext):
     """Say hello to the bot"""  # The command description can be supplied as the docstring
@@ -31,8 +33,11 @@ async def hello(ctx: discord.ApplicationContext):
 
 
 @bot.slash_command(name="hi")
-async def global_command(ctx: discord.ApplicationContext, num: int):  # Takes one integer parameter
+async def global_command(
+    ctx: discord.ApplicationContext, num: int
+):  # Takes one integer parameter
     await ctx.respond(f"This is a global command, {num}!")
+
 
 @bot.slash_command()
 @discord.default_permissions(
@@ -41,10 +46,14 @@ async def global_command(ctx: discord.ApplicationContext, num: int):  # Takes on
 async def admin_only(ctx: discord.ApplicationContext):
     await ctx.respond(f"Hello {ctx.author}, you are an administrator.")
 
-util = SlashCommandGroup("util", "utility commands")   
+
+util = SlashCommandGroup("util", "utility commands")
+
+
 @util.command()
 async def ping(ctx: discord.ApplicationContext):
-    await ctx.respond('pong!')
-    
+    await ctx.respond("pong!")
+
+
 # To learn how to add descriptions and choices to options, check slash_options.py
 bot.run(os.getenv("DISCORD_TOKEN"))
